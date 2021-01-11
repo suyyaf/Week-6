@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Manupulation</title>
+
+</head>
+<body>
+	<h1>DOM Manipulation</h1>
+
+	<input type="text" id="name" placeholder="Enter your name">
+	<button onclick="sayHello()">Click me!</button>
+	<p id="greetings"></p>
+
+	<hr>
+
+	<button onclick="clickMeAgain()" id="firstbtn">Click me again</button>
+	<button id="secondbtn">Try to click me!</button>
+
+	<hr>
+
+	<h2>My to do list</h2>
+
+	<input type="text" id="itemname" placeholder="Add new item"/>
+	<button onclick="addNewItem()">Add a new Item</button>
+
+	<ul id="item-list">
+
+	<script type="text/javascript">
+
+		function sayHello(){
+			//Get the value from input..
+			var name = document.getElementById("name").value;
+			//set the value  on a p,span,h1,...
+		    document.getElementById("greetings").innerHTML = "Hello "+name;
+		    //set ""(empty string)/clear input
+
+		    document.getElementById("name").value="";
+		}
+
+		function clickMeAgain(){
+
+  			// == I compare right and left(same or not)
+			if (document.getElementById("secondbtn").disabled == true){
+				document.getElementById("firstbtn").innerHTML = "Disable button";
+				document.getElementById("secondbtn").removeAttribute("disabled");
+				// = for assigning
+			}
+			else {
+			document.getElementById("firstbtn").innerHTML = "Enable button";
+			document.getElementById("secondbtn").setAttribute("disabled",true);
+ 			}
+ 		}	
+
+		function addNewItem() {
+			var newItem = document.getElementById("itemname").value;
+			var newLi = document.createElement("li");
+			newLi.innerHTML = newItem ;
+			var newButton = document.createElement("button");
+			newButton.innerHTML = "Remove";
+			//adding an onClick element dynamically
+			newButton.addEventListener("click",function(){
+				//remove the Li from the item-list..
+				document.getElementById("item-list").removeChild(newLi);
+			})
+			newLi.appendChild(newButton);
+			document.getElementById("item-list").appendChild(newLi)
+			//apendChild -> Add it here <li></li>
+		}
+		
+	</script>
+</body>
+</html>
